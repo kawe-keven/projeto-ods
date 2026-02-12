@@ -8,9 +8,9 @@
 **Prazo de Submissão:** 5 de março de 2026
 
 ## 👥 Equipe
-- **Nome 1** - Função/Curso - [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kawe-keven)
-- **Nome 1** - Função/Curso - [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kawe-keven)
--  **Nome 1** - Função/Curso - [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kawe-keven)
+- **Kawê Keven Dos Santos Figueredo** - Função/Curso - [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kawe-keven)
+- **Thiago José Teles Gois** - Função/Curso - [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/thiagopfteles-afk)
+-  **Paulo Guilherme Oliveira de Lima** - Função/Curso - [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/paulogolima)
 - **Supervisor:** Prof. Nome - Instituição
 
 ## 🔍 Problema
