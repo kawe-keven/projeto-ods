@@ -1,0 +1,284 @@
+/* ============================================================
+   login.css — Página de Login — Light Neumorphic
+   ============================================================ */
+
+/* ── Reset mínimo ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sur1);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Plano de fundo decorativo ── */
+.login-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(2,132,199,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(14,165,233,0.05) 0%, transparent 70%),
+    var(--sur1);
+  z-index: 0;
+}
+
+/* ── Wrapper central ── */
+.login-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 380px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Card principal ── */
+.login-card {
+  background: var(--sur);
+  border-radius: 20px;
+  box-shadow:
+    -8px -8px 20px rgba(255,255,255,0.92),
+     8px  8px 22px rgba(155,180,215,0.70);
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Cabeçalho / marca ── */
+.login-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--sur1);
+  box-shadow:
+    -4px -4px 10px rgba(255,255,255,0.92),
+     4px  4px 12px rgba(155,180,215,0.65),
+     inset 0 0 0 1px rgba(155,180,215,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.login-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a3050;
+  letter-spacing: 0.5px;
+}
+
+.login-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #8aaac8;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+/* ── Formulário ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4a6888;
+  letter-spacing: 0.3px;
+  padding-left: 4px;
+}
+
+.login-input-wrap {
+  position: relative;
+}
+
+.login-input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.login-input {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  border: none;
+  border-radius: 12px;
+  background: var(--sur1);
+  box-shadow:
+    inset -3px -3px 7px rgba(255,255,255,0.85),
+    inset  3px  3px 8px rgba(155,180,215,0.50);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #1a3050;
+  outline: none;
+  transition: box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+.login-input:focus {
+  box-shadow:
+    inset -3px -3px 7px rgba(255,255,255,0.85),
+    inset  3px  3px 8px rgba(155,180,215,0.50),
+    0 0 0 2px rgba(2,132,199,0.30);
+}
+
+.login-input::placeholder { color: #8aaac8; }
+
+/* ── Mensagem de erro ── */
+.login-error {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220,38,38,0.08);
+  border: 1px solid rgba(220,38,38,0.25);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #dc2626;
+  font-weight: 500;
+}
+.login-error.visible { display: flex; }
+
+/* ── Botão de entrar ── */
+.login-btn {
+  margin-top: 4px;
+  padding: 13px;
+  border: none;
+  border-radius: 14px;
+  background: var(--sur);
+  box-shadow:
+    -5px -5px 12px rgba(255,255,255,0.90),
+     5px  5px 14px rgba(155,180,215,0.65);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0284c7;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, color 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn:hover {
+  box-shadow:
+    -5px -5px 12px rgba(255,255,255,0.90),
+     5px  5px 14px rgba(155,180,215,0.65),
+     0 0 18px rgba(2,132,199,0.22);
+  color: #0369a1;
+}
+
+.login-btn:active {
+  box-shadow:
+    inset -3px -3px 8px rgba(255,255,255,0.82),
+    inset  3px  3px 9px rgba(155,180,215,0.55);
+  color: #0284c7;
+}
+
+.login-btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(2,132,199,0.25);
+  border-top-color: #0284c7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+.login-btn.loading .login-btn-text   { display: none; }
+.login-btn.loading .login-btn-spinner { display: block; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Dica de credenciais (demo) ── */
+.login-hint {
+  background: var(--sur1);
+  border-radius: 12px;
+  box-shadow:
+    inset -2px -2px 6px rgba(255,255,255,0.80),
+    inset  2px  2px 7px rgba(155,180,215,0.45);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-hint-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #8aaac8;
+}
+
+.login-hint-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 4px 6px;
+  transition: background 0.15s;
+}
+.login-hint-row:hover { background: rgba(2,132,199,0.06); }
+
+.login-hint-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  min-width: 64px;
+  text-align: center;
+}
+.badge-coord  { background: rgba(2,132,199,0.12);  color: #0284c7; }
+.badge-admin  { background: rgba(168,85,247,0.12); color: #9333ea; }
+.badge-medico { background: rgba(34,197,94,0.12);  color: #16a34a; }
+
+.login-hint-creds {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #4a6888;
+}
+
+/* ── Rodapé ── */
+.login-footer {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  color: #8aaac8;
+}
+
+.login-footer b {
+  color: #4a6888;
+  font-weight: 600;
+}

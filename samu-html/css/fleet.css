@@ -1,0 +1,253 @@
+﻿/* ============================================================
+   fleet.css -- Painel de Ambulancias -- Dark Neumorphic
+   ============================================================ */
+
+.fleet-panel { width: 42%; flex-shrink: 0; }
+
+.fleet-sub-title {
+  font-family: var(--fd);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--t2);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/*  Donut / topo  */
+.fleet-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fleet-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fleet-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--t1);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.legend-dot.blue   { background: var(--blue);   color: var(--blue);   }
+.legend-dot.red    { background: var(--red);    color: var(--red);    }
+.legend-dot.yellow { background: var(--yellow); color: var(--yellow); }
+.legend-dot.green  { background: var(--green);  color: var(--green);  }
+
+/*  Badges de status  */
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 8.5px;
+  font-weight: 600;
+  font-family: var(--fd);
+  box-shadow: var(--nm-in);
+}
+
+.badge.available  { color: #86efac; box-shadow: var(--nm-in), var(--glow-green); }
+.badge.busy       { color: #fca5a5; box-shadow: var(--nm-in), var(--glow-red);   }
+.badge.maintenance{ color: #fcd34d; box-shadow: var(--nm-in), var(--glow-orange);}
+
+.badge.alta  { color: #fca5a5; box-shadow: var(--nm-in), var(--glow-red);   }
+.badge.media { color: #fdba74; box-shadow: var(--nm-in), var(--glow-orange); }
+.badge.baixa { color: #fcd34d; box-shadow: var(--nm-in);                    }
+
+/*  Tabela  */
+.fleet-table-wrap {
+  flex: 1;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.inc-table { font-size: 9.5px; }
+
+.inc-table th {
+  font-family: var(--fd);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--t2);
+  padding: 3px 6px;
+  text-align: left;
+}
+
+.inc-table td {
+  padding: 3px 6px;
+  color: var(--t1);
+}
+
+.inc-table tbody tr {
+  background: var(--sur);
+  border-radius: 6px;
+  transition: box-shadow 0.15s;
+}
+
+.inc-table tr:hover td { color: var(--t1); filter: brightness(1.15); }
+
+.amb-id {
+  font-family: var(--fm);
+  color: var(--cyan);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.cov-cell {
+  font-size: 8.5px;
+  color: var(--t3);
+}
+
+/*  Abas  */
+.fleet-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.fleet-tab {
+  flex: 1;
+  padding: 6px 8px;
+  background: var(--sur);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--t2);
+  font-family: var(--fd);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  box-shadow: var(--nm-out);
+  transition: box-shadow 0.18s, color 0.18s;
+}
+
+.fleet-tab:hover  { color: var(--cyan); box-shadow: var(--nm-out), var(--glow-cyan); }
+.fleet-tab.active { color: var(--cyan); box-shadow: var(--nm-in), var(--glow-cyan); }
+
+.fleet-tab-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+}
+
+/*  Botao remover  */
+.amb-del-btn {
+  background: var(--sur);
+  border: none;
+  color: var(--t3);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 6px;
+  box-shadow: var(--nm-flat);
+  transition: box-shadow 0.15s, color 0.15s;
+}
+.amb-del-btn:hover {
+  color: var(--red);
+  box-shadow: var(--nm-in), var(--glow-red);
+}
+
+/*  Formulario cadastro  */
+.amb-form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 2px;
+}
+
+.amb-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+
+.amb-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--fd);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--t2);
+}
+
+.amb-input {
+  background: var(--sur);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--t1);
+  font-family: var(--fm);
+  font-size: 10px;
+  padding: 5px 9px;
+  outline: none;
+  box-shadow: var(--nm-in);
+  transition: box-shadow 0.18s;
+  -moz-appearance: textfield;
+}
+.amb-input:focus {
+  box-shadow: var(--nm-in), var(--glow-cyan);
+  color: var(--t1);
+}
+.amb-input option { background: #141d2e; color: var(--t1); }
+
+.amb-form-msg {
+  font-family: var(--fd);
+  font-size: 9px;
+  min-height: 14px;
+  letter-spacing: 0.3px;
+}
+.amb-form-msg.error   { color: var(--red);   }
+.amb-form-msg.success { color: var(--green); }
+
+.amb-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.amb-btn-cancel, .amb-btn-save {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--fd);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: none;
+  background: var(--sur);
+  box-shadow: var(--nm-out);
+  transition: box-shadow 0.18s, color 0.18s;
+}
+
+.amb-btn-cancel { color: var(--t2); }
+.amb-btn-cancel:hover  { color: var(--t1); }
+.amb-btn-cancel:active { box-shadow: var(--nm-in); }
+
+.amb-btn-save { color: var(--cyan); }
+.amb-btn-save:hover  { box-shadow: var(--nm-out), var(--glow-cyan); }
+.amb-btn-save:active { box-shadow: var(--nm-in); }
