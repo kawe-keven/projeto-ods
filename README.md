@@ -1,4 +1,4 @@
-# [Nome do Projeto] - SDC CLIHC 2026
+# PulseView - SDC CLIHC 2026
 
 ## 🎯 Visão Geral
 [Descrição em 2-3 parágrafos do problema e solução proposta]
