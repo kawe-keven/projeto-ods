@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMU — Hospitais</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets (mesmos da aplicação principal) -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/performance.css" />
+  <link rel="stylesheet" href="css/zones.css" />
+  <link rel="stylesheet" href="css/hospitals.css" />
+  <link rel="stylesheet" href="css/hospitals-page.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <!-- ── Main ── -->
+    <div class="main-content">
+      <header class="top-header" id="header"></header>
+
+      <!-- Conteúdo da página de hospitais -->
+      <div class="hosp-page-body">
+
+        <!-- Barra de título da página -->
+        <div class="hosp-page-titlebar">
+          <a class="hosp-page-back" href="index.html" title="Voltar ao Mapa">
+            ← Mapa
+          </a>
+          <span class="hosp-page-title">🏥 HOSPITAIS — OCUPAÇÃO E DISPONIBILIDADE PARA INFARTOS</span>
+          <span class="hosp-page-badge-live">● AO VIVO</span>
+        </div>
+
+        <!-- Painel renderizado por hospitals.js -->
+        <div class="hosp-page-panel panel" id="hospPanel"></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Scripts ── -->
+  <script src="js/auth.js"></script>
+  <script>Auth.guard();</script>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <!-- Integração dados reais (Overpass OSM + IBGE 2022 + CNES/DATASUS) -->
+  <script src="js/realData.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/hospitals.js"></script>
+
+  <script>
+    // Router mínimo: redireciona cliques da sidebar de volta ao index
+    var Router = {
+      navigate(id) {
+        if (id === "hospitals") return; // já estamos aqui
+        window.location.href = "index.html?nav=" + encodeURIComponent(id);
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      Sidebar.render();
+      Sidebar.activateById("hospitals");
+      Header.render();
+
+      // Busca dados reais antes de renderizar a tabela de hospitais
+      await RealData.init();
+      Header.render();   // re-renderiza com contagens corretas
+
+      HospitalsPanel.render();
+    });
+  </script>
+</body>
+</html>

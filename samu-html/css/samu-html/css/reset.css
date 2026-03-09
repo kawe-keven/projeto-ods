@@ -1,0 +1,81 @@
+﻿/* ============================================================
+   reset.css -- Reset e estilos base -- Light Neumorphic
+   ============================================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--sur1);
+  color: var(--t1);
+  font-family: var(--fb);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  touch-action: manipulation;        /* remove delay de 300ms em toque */
+  -webkit-tap-highlight-color: transparent;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+svg { display: block; }
+
+/*  Neumorphic helpers  */
+.nm-raised  { box-shadow: var(--nm-out); }
+.nm-pressed { box-shadow: var(--nm-in);  }
+.nm-flat    { box-shadow: var(--nm-flat); }
+
+/*  Accent text classes  */
+.accent-green  { color: var(--green)  !important; }
+.accent-orange { color: var(--orange) !important; }
+.accent-red    { color: var(--red)    !important; }
+.accent-cyan   { color: var(--cyan)   !important; }
+.accent-blue   { color: var(--blue)   !important; }
+
+/*  Blink pulse  */
+.pulse::before {
+  content: '\25CF  ';
+  animation: blink 1.5s infinite;
+  will-change: opacity;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/*  Spin  */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/*  Contenção de layout — impede repaint de um painel
+    de se propagar para outros elementos da página     */
+.panel, .page-panel, .map-panel {
+  contain: layout style;
+}
+
+/*  Scrollbar  */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(155, 180, 215, 0.55);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(2, 132, 199, 0.40); }

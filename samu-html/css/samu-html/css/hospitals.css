@@ -1,0 +1,415 @@
+/* ============================================================
+   hospitals.css — Painel de Hospitais — Light Neumorphic
+   ============================================================ */
+
+/* ── Scroll wrapper (reutiliza .hosp-stats-row de performance.css) ── */
+.hosp-scroll-wrap {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   GRID DE DISPONIBILIDADE PARA INFARTOS
+   ─────────────────────────────────────────────────────────── */
+.hav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.hav-card {
+  background: var(--sur);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--nm-flat);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: box-shadow 0.18s;
+}
+.hav-card:hover { box-shadow: var(--nm-out); }
+
+/* cabeçalho: badge + nome */
+.hav-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.hav-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fd);
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: var(--nm-in);
+}
+.hav-badge-h { color: var(--cyan);   }
+.hav-badge-u { color: #c084fc;       }
+
+.hav-name {
+  font-family: var(--fd);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.1;
+}
+
+/* rótulo de status */
+.hav-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fd);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.hav-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* número de leitos disponíveis */
+.hav-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.hav-avail-num {
+  font-family: var(--fd);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hav-avail-lbl {
+  font-family: var(--fb);
+  font-size: 10px;
+  color: var(--t3);
+  line-height: 1.2;
+}
+
+/* badge hemodinâmica */
+.hav-hemof {
+  font-family: var(--fb);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  align-self: flex-start;
+}
+.hav-hemof-yes {
+  background: rgba(2, 132, 199, 0.10);
+  color: var(--cyan);
+}
+.hav-hemof-no {
+  background: rgba(234, 179, 8, 0.12);
+  color: var(--yellow);
+}
+
+.hav-general {
+  font-family: var(--fb);
+  font-size: 10px;
+  color: var(--t3);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   CARDS DETALHADOS DE OCUPAÇÃO
+   ─────────────────────────────────────────────────────────── */
+.hdet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hdet-card {
+  background: var(--sur);
+  border-radius: var(--radius);
+  box-shadow: var(--nm-flat);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.18s;
+}
+.hdet-card:hover { box-shadow: var(--nm-out); }
+
+/* ── cabeçalho do card ── */
+.hdet-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hdet-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: var(--nm-in);
+}
+.hdet-badge-h { color: var(--cyan);  }
+.hdet-badge-u { color: #c084fc;      }
+
+.hdet-title-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hdet-name {
+  font-family: var(--fd);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1;
+}
+
+.hdet-chips {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.hdet-chip {
+  font-family: var(--fb);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--sur1);
+  box-shadow: var(--nm-in);
+  color: var(--t2);
+}
+
+.hdet-chip-hemo {
+  background: rgba(2, 132, 199, 0.10);
+  color: var(--cyan);
+  box-shadow: none;
+}
+
+.hdet-chip-warn {
+  background: rgba(234, 179, 8, 0.10);
+  color: var(--yellow);
+  box-shadow: none;
+}
+
+.hdet-status-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.hdet-status-label {
+  font-family: var(--fd);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.hdet-resp {
+  font-family: var(--fb);
+  font-size: 10px;
+  color: var(--t3);
+}
+
+/* ── Barras de ocupação ── */
+.hdet-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hdet-bar-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hdet-bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--fb);
+  font-size: 11px;
+  color: var(--t2);
+}
+
+.hdet-bar-track {
+  width: 100%;
+  height: 10px;
+  background: var(--sur1);
+  border-radius: 6px;
+  overflow: visible;
+  box-shadow: var(--nm-in);
+  position: relative;
+}
+
+.hdet-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* linha de alerta nos 90% */
+.hdet-bar-marker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: rgba(220, 38, 38, 0.45);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.hdet-bar-sub {
+  font-family: var(--fb);
+  font-size: 10px;
+  color: var(--t3);
+}
+
+/* ── Rodapé do card: stats + sparkline ── */
+.hdet-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(155, 180, 215, 0.35);
+}
+
+.hdet-foot-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.hdet-foot-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.hdet-foot-val {
+  font-family: var(--fd);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hdet-foot-lbl {
+  font-family: var(--fb);
+  font-size: 9.5px;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+.hdet-foot-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(155, 180, 215, 0.4);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* sparkline */
+.hdet-sparkline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.hdet-spark-label {
+  font-family: var(--fb);
+  font-size: 9.5px;
+  color: var(--t3);
+  letter-spacing: 0.2px;
+}
+
+.hdet-spark-days {
+  display: flex;
+  gap: 2px;
+  width: 80px;
+  justify-content: space-between;
+}
+
+.hdet-spark-days span {
+  font-family: var(--fm);
+  font-size: 7.5px;
+  color: var(--t3);
+  width: 9px;
+  text-align: center;
+  line-height: 1;
+}
+
+/* ── Chips de fonte de dados no card detalhado ── */
+.hdet-chip-src {
+  background: rgba(6,182,212,0.10);
+  color: var(--cyan);
+}
+.hdet-chip-occ {
+  background: rgba(168,85,247,0.10);
+  color: #a855f7;
+}
+.chip-real {
+  font-size: 7px;
+  opacity: 0.75;
+  vertical-align: super;
+}
+
+/* ── Tags de fonte no card de disponibilidade ── */
+.hav-src-row {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+.hav-src-tag {
+  font-family: var(--fm);
+  font-size: 8.5px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: var(--sur1);
+  box-shadow: var(--nm-in);
+  color: var(--t3);
+  letter-spacing: 0.2px;
+}
+.hav-src-occ {
+  color: #a855f7;
+  background: rgba(168,85,247,0.09);
+}
+.hav-real-sup {
+  font-size: 7px;
+  opacity: 0.7;
+  vertical-align: super;
+}

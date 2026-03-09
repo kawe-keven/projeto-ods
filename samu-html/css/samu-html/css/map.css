@@ -1,0 +1,494 @@
+﻿/* ============================================================
+   map.css -- Painel do mapa -- Light Neumorphic
+   ============================================================ */
+
+/*  Painel externo  */
+.map-panel {
+  flex: 1;
+  min-height: 0;
+  background: var(--sur);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--nm-out);
+}
+
+/*  Barra de titulo  */
+.map-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: var(--sur1);
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(155, 180, 215, 0.40);
+  z-index: 2;
+  color: var(--t1);
+}
+
+.map-menu-icon { font-size: 18px; color: var(--cyan); }
+
+.map-title-badges {
+  margin-left: auto;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.map-badge-city {
+  font-family: var(--fb);
+  font-size: 11px;
+  color: var(--t2);
+  background: var(--sur);
+  padding: 3px 11px;
+  border-radius: 14px;
+  box-shadow: var(--nm-in);
+}
+
+.map-badge-src {
+  font-family: var(--fb);
+  font-size: 11px;
+  color: var(--yellow);
+  background: var(--sur);
+  padding: 3px 11px;
+  border-radius: 14px;
+  box-shadow: var(--nm-in), var(--glow-orange);
+}
+
+.map-badge-live {
+  font-family: var(--fb);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--sur);
+  padding: 3px 11px;
+  border-radius: 14px;
+  box-shadow: var(--nm-in), var(--glow-green);
+  animation: blink 2s infinite;
+  will-change: opacity;   /* GPU-composited opacity animation */
+}
+
+/*  Botoes de controle  */
+.map-ctrl-btn {
+  font-family: var(--fb);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--t1);
+  background: var(--sur);
+  padding: 5px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--nm-out);
+  transition: box-shadow 0.18s ease, color 0.18s ease;
+  will-change: box-shadow;
+}
+
+.map-ctrl-btn:hover {
+  color: var(--cyan);
+  box-shadow: var(--nm-out), var(--glow-cyan);
+}
+
+.map-ctrl-btn:active { box-shadow: var(--nm-in); }
+
+.map-ctrl-btn.inactive {
+  color: var(--t3);
+  box-shadow: var(--nm-in);
+}
+
+.map-ctrl-btn.active-sat {
+  color: #facc15;
+  box-shadow: var(--nm-in), 0 0 8px #facc1566;
+}
+
+/*  Spinner de carregamento  */
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--fb);
+  font-size: 13px;
+  color: var(--cyan);
+}
+
+.deck-spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--sur);
+  box-shadow: var(--nm-out);
+  border: 3px solid transparent;
+  border-top-color: var(--cyan);
+  animation: spin 1.1s linear infinite;
+  will-change: transform;        /* spinner roda 100% na GPU */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/*  Tooltip deck.gl  */
+.deck-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 999;
+  max-width: 230px;
+  background: var(--sur2);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--nm-out), 0 6px 24px rgba(155,180,215,0.40);
+  font-family: var(--fb);
+  font-size: 11.5px;
+  color: var(--t2);
+  line-height: 1.75;
+  will-change: transform;     /* moveções de posicionamento na GPU */
+  contain: layout style paint; /* isola o tooltip do restante da página */
+}
+
+.dt-header {
+  font-family: var(--fd);
+  font-size: 14px;
+  color: var(--cyan);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin-bottom: 7px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(155,180,215,0.45);
+}
+
+.dt-row {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.dt-row span:first-child {
+  color: var(--t3);
+  min-width: 60px;
+  font-size: 10.5px;
+}
+
+.dt-coord {
+  font-family: var(--fm);
+  font-size: 9.5px;
+  color: var(--t3);
+  margin-top: 7px;
+  padding-top: 5px;
+  border-top: 1px solid rgba(155,180,215,0.40);
+}
+
+/*  Container do mapa  */
+.map-container {
+  flex: 1;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  background: #0a0f1a;
+  contain: layout paint;      /* isola repaint do mapa — maior ganho */
+  will-change: contents;      /* sinaliza ao browser que os filhos mudam */
+}
+
+/*  Rodape  */
+.map-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 14px;
+  background: var(--sur1);
+  border-top: none;
+  box-shadow: 0 -3px 10px rgba(155, 180, 215, 0.35);
+  flex-shrink: 0;
+}
+
+.map-nav {
+  font-size: 11px;
+  color: var(--t2);
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.map-info {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t3);
+}
+
+/*  Overlay loading / error  */
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sur);
+  z-index: 20;
+  opacity: 1;
+  /* fade-out é aplicado via JS ao remover */
+}
+
+.map-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--red);
+  font-family: var(--fb);
+  font-size: 13px;
+  background: var(--sur);
+  padding: 28px 36px;
+  border-radius: var(--radius);
+  box-shadow: var(--nm-out);
+}
+
+.map-error small { color: var(--t3); font-size: 11px; }
+
+/*  Mapa real (Leaflet etc.)  */
+.real-map-container { position: absolute; inset: 0; }
+
+/* ─── Legenda do mapa ────────────────────────────────────────── */
+.map-legend {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 10;
+  background: var(--sur2);
+  border-radius: var(--radius);
+  box-shadow: var(--nm-out);
+  padding: 14px 16px;
+  min-width: 158px;
+  pointer-events: none;
+  user-select: none;
+  contain: layout style paint; /* legenda é totalmente isolada */
+  transform: translateZ(0);
+}
+
+.map-legend-title {
+  font-family: var(--fd);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(2,132,199,0.20);
+}
+
+.legend-section {
+  margin-bottom: 10px;
+}
+.legend-section:last-child { margin-bottom: 0; }
+
+.legend-section-title {
+  font-family: var(--fd);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t3);
+  margin-bottom: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fb);
+  font-size: 10.5px;
+  color: var(--t2);
+  margin-bottom: 5px;
+}
+.legend-item:last-child { margin-bottom: 0; }
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-gradient-bar {
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    rgba(5,55,175,0.75),
+    rgba(0,148,215,0.82),
+    rgba(0,205,178,0.87),
+    rgba(38,205,58,0.88),
+    rgba(155,218,18,0.91),
+    rgba(228,188,5,0.94),
+    rgba(245,105,0,0.97),
+    rgba(212,10,18,1),
+    rgba(148,0,65,1)
+  );
+  box-shadow: var(--nm-in);
+  margin-bottom: 3px;
+}
+
+.legend-gradient-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fb);
+  font-size: 9px;
+  color: var(--t3);
+}
+
+/* ─── Statbar ambulâncias no rodapé ─────────────────────────── */
+.map-amb-stats {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--fm);
+  font-size: 9px;
+}
+
+.amb-stat-pip {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 0.3px;
+}
+
+/* ─── Barra de navegação flutuante (direita) ─────────────────── */
+.map-nav-toolbar {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: rgba(236,239,245,0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 10px 7px;
+  box-shadow: 4px 4px 10px rgba(163,177,198,.55), -3px -3px 8px rgba(255,255,255,.75);
+  min-width: 42px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: var(--sur, #e8ecf1);
+  box-shadow: 3px 3px 7px rgba(163,177,198,.5), -2px -2px 6px rgba(255,255,255,.8);
+  color: var(--t2, #5a6a82);
+  font-size: 16px;
+  cursor: pointer;
+  transition: box-shadow .18s, background .18s, color .18s;
+  padding: 0;
+  line-height: 1;
+  user-select: none;
+  touch-action: manipulation;
+}
+.nav-btn:hover {
+  box-shadow: 5px 5px 10px rgba(163,177,198,.55), -3px -3px 8px rgba(255,255,255,.85);
+  color: var(--cyan, #06b6d4);
+}
+.nav-btn:active {
+  box-shadow: inset 3px 3px 7px rgba(163,177,198,.5), inset -2px -2px 6px rgba(255,255,255,.7);
+}
+
+.nav-btn-active {
+  background: var(--cyan, #06b6d4);
+  color: #fff !important;
+  box-shadow: 2px 2px 6px rgba(6,182,212,.45), -1px -1px 4px rgba(255,255,255,.55);
+}
+.nav-btn-active:hover {
+  background: var(--cyan, #06b6d4);
+  filter: brightness(1.08);
+}
+
+/* Camadas: on = ativo, off = inativo */
+.nav-layer-btn.on  { color: var(--cyan, #06b6d4); }
+.nav-layer-btn.off { color: var(--t3, #8fa0b5); opacity: 0.65; }
+
+/* Separador */
+.nav-sep {
+  width: 24px;
+  height: 1px;
+  background: rgba(163,177,198,.4);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* Bússola */
+.nav-compass { padding: 4px; }
+
+/* Badges numéricos */
+.nav-zoom-badge,
+.nav-bear-badge {
+  font-family: var(--fm, monospace);
+  font-size: 9.5px;
+  color: var(--t3, #8fa0b5);
+  letter-spacing: 0.3px;
+  text-align: center;
+  user-select: none;
+}
+
+/* ─── Ir para bairro ─────────────────────────────────────────── */
+.map-goto {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 20;
+}
+
+.goto-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 6px 28px 6px 10px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(236,239,245,0.88) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238fa0b5'/%3E%3C/svg%3E") no-repeat right 8px center;
+  backdrop-filter: blur(6px);
+  box-shadow: 3px 3px 8px rgba(163,177,198,.5),-2px -2px 6px rgba(255,255,255,.75);
+  font-family: var(--fb, sans-serif);
+  font-size: 11px;
+  color: var(--t2, #4a5a72);
+  cursor: pointer;
+  min-width: 170px;
+  transition: box-shadow .18s;
+}
+.goto-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(6,182,212,.45), 3px 3px 8px rgba(163,177,198,.4);
+}
+
+/* ─── Keyboard hints no rodapé ───────────────────────────────── */
+.map-kbd-hints {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  font-family: var(--fb, sans-serif);
+  font-size: 10px;
+  color: var(--t3, #8fa0b5);
+}
+
+.map-kbd-hints kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--sur, #e8ecf1);
+  box-shadow: 1px 1px 3px rgba(163,177,198,.5), -1px -1px 2px rgba(255,255,255,.7);
+  font-family: var(--fm, monospace);
+  font-size: 10px;
+  color: var(--cyan, #06b6d4);
+  letter-spacing: 0;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMU Dashboard</title>
+
+  <meta name="theme-color" content="#eef2f9" />
+
+  <!-- Resource hints — conecta com CDNs antes de precisar dos scripts -->
+  <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
+  <link rel="preconnect" href="https://events.mapbox.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://api.mapbox.com" />
+
+  <!-- Preload dos scripts pesados do mapa — inicia download imediatamente -->
+  <link rel="preload" as="script" href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js" crossorigin />
+  <link rel="preload" as="style"  href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" crossorigin />
+  <link rel="preload" as="script" href="https://unpkg.com/deck.gl@8.9.35/dist.min.js" crossorigin />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/map.css" />
+  <link rel="stylesheet" href="css/fleet.css" />
+  <link rel="stylesheet" href="css/performance.css" />
+  <link rel="stylesheet" href="css/zones.css" />
+  <link rel="stylesheet" href="css/hospitals.css" />
+  <link rel="stylesheet" href="css/users.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <!-- ── Main ── -->
+    <div class="main-content">
+      <header class="top-header" id="header"></header>
+
+      <div class="dashboard-body">
+        <!-- Map -->
+        <section class="map-panel" id="mapPanel"></section>
+      </div>
+
+      <!-- Páginas dedicadas (ambulâncias / hospitais / etc.) -->
+      <div id="pageView" class="page-view" style="display:none"></div>
+    </div>
+
+  </div>
+
+  <!-- Auth (deve vir antes de tudo) -->
+  <script src="js/auth.js"></script>
+  <script>Auth.guard();</script>
+
+  <!-- Config (API keys) -->
+  <script src="js/config.js?v=2"></script>
+
+  <!-- Data -->
+  <script src="js/data.js"></script>
+
+  <!-- Integração dados reais (Overpass OSM + IBGE 2022 + CNES/DATASUS) -->
+  <script src="js/realData.js"></script>
+
+  <!-- Charts (SVG helpers) -->
+  <script src="js/charts.js"></script>
+
+  <!-- Components -->
+  <script src="js/sidebar.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/mockMap.js"></script>
+  <script src="js/map.js?v=3"></script>
+  <script src="js/performance.js"></script>
+  <script src="js/zones.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/hospitals.js"></script>
+  <script src="js/users.js"></script>
+
+  <!-- App bootstrap -->
+  <script src="js/app.js"></script>
+</body>
+</html>

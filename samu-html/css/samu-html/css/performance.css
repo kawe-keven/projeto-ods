@@ -1,0 +1,186 @@
+﻿/* ============================================================
+   performance.css -- Hospitais e Risco -- Light Neumorphic
+   ============================================================ */
+
+.performance-panel {
+  flex: 1;
+  overflow: hidden;
+}
+
+.perf-scroll-wrap {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/*  Stats rapidas  */
+.hosp-stats-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.hosp-stat {
+  flex: 1;
+  background: var(--sur);
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: var(--nm-in);
+}
+
+.hs-val {
+  font-family: var(--fd);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hs-lbl {
+  font-size: 9.5px;
+  color: var(--t2);
+  font-family: var(--fb);
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+/*  Lista de hospitais  */
+.hosp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hosp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sur);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  box-shadow: var(--nm-flat);
+  transition: box-shadow 0.18s;
+}
+.hosp-row:hover { box-shadow: var(--nm-out); }
+
+.hosp-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fd);
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: var(--nm-in);
+}
+
+.hosp-badge-h { color: var(--cyan); }
+.hosp-badge-u { color: #c084fc;    }
+
+.hosp-name {
+  width: 120px;
+  font-family: var(--fb);
+  font-size: 11px;
+  color: var(--t1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.hosp-bar-wrap {
+  flex: 1;
+  height: 7px;
+  background: var(--sur);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--nm-in);
+}
+
+.hosp-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.hosp-pct {
+  font-family: var(--fm);
+  font-size: 10.5px;
+  width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.hosp-leitos {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t3);
+  width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/*  Barras de risco por bairro  */
+.risk-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  font-size: 10.5px;
+}
+
+.risk-bairro {
+  font-family: var(--fb);
+  color: var(--t2);
+  width: 100px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.risk-bar-track {
+  flex: 1;
+  height: 6px;
+  background: var(--sur);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--nm-in);
+}
+
+.risk-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.risk-val {
+  font-family: var(--fm);
+  font-size: 10.5px;
+  width: 26px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.perf-sub-title {
+  font-family: var(--fd);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--t2);
+  text-align: center;
+  margin-bottom: 4px;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMU — Login</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+
+  <div class="login-bg"></div>
+
+  <div class="login-wrapper">
+
+    <!-- ── Card de login ── -->
+    <div class="login-card">
+
+      <!-- Marca -->
+      <div class="login-brand">
+        <div class="login-logo">🚑</div>
+        <div class="login-title">SAMU Dashboard</div>
+        <div class="login-subtitle">Sistema de Monitoramento de Risco Cardíaco · Aracaju / SE</div>
+      </div>
+
+      <!-- Formulário -->
+      <form class="login-form" id="loginForm" autocomplete="off" novalidate>
+
+        <div class="login-field">
+          <label class="login-label" for="inputUser">USUÁRIO</label>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">👤</span>
+            <input class="login-input" id="inputUser" type="text"
+                   placeholder="seu.usuario" autocomplete="username" />
+          </div>
+        </div>
+
+        <div class="login-field">
+          <label class="login-label" for="inputPass">SENHA</label>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">🔒</span>
+            <input class="login-input" id="inputPass" type="password"
+                   placeholder="••••••••" autocomplete="current-password" />
+          </div>
+        </div>
+
+        <div class="login-error" id="loginError">
+          ⚠️ Usuário ou senha inválidos. Tente novamente.
+        </div>
+
+        <button class="login-btn" type="submit" id="loginBtn">
+          <span class="login-btn-text">Entrar no Sistema</span>
+          <span class="login-btn-spinner"></span>
+        </button>
+
+      </form>
+    </div>
+
+    <!-- ── Dica de credenciais (demo) ── -->
+    <div class="login-hint">
+      <div class="login-hint-title">CREDENCIAIS DE DEMONSTRAÇÃO — clique para preencher</div>
+
+      <div class="login-hint-row" data-u="admin" data-p="admin123">
+        <span class="login-hint-badge badge-admin" title="Nível 3 — acesso total, gerencia usuários">Admin</span>
+        <span class="login-hint-creds">admin / admin123</span>
+      </div>
+      <div class="login-hint-row" data-u="coord" data-p="samu2026">
+        <span class="login-hint-badge badge-coord" title="Nível 2 — gestão operacional completa">Coordenador</span>
+        <span class="login-hint-creds">coord / samu2026</span>
+      </div>
+      <div class="login-hint-row" data-u="medico" data-p="med2026">
+        <span class="login-hint-badge badge-medico" title="Nível 1 — acesso clínico e hospitalar">Médico</span>
+        <span class="login-hint-creds">medico / med2026</span>
+      </div>
+      <div class="login-hint-row" data-u="operador" data-p="op2026">
+        <span class="login-hint-badge badge-operador" title="Nível 0 — visualização básica">Operador</span>
+        <span class="login-hint-creds">operador / op2026</span>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="login-footer">
+      <b>SAMU / Sergipe</b> · Coord. de Risco Cardíaco · v1.0.0
+    </div>
+
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Se já logado, vai direto ao dashboard
+    if (Auth.isLogged()) window.location.replace("index.html");
+
+    const form   = document.getElementById("loginForm");
+    const errEl  = document.getElementById("loginError");
+    const btn    = document.getElementById("loginBtn");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const user = document.getElementById("inputUser").value;
+      const pass = document.getElementById("inputPass").value;
+
+      errEl.classList.remove("visible");
+      btn.classList.add("loading");
+
+      // Simula latência de rede (300 ms)
+      setTimeout(() => {
+        btn.classList.remove("loading");
+        if (Auth.login(user, pass)) {
+          window.location.href = "index.html";
+        } else {
+          errEl.classList.add("visible");
+          document.getElementById("inputPass").value = "";
+          document.getElementById("inputPass").focus();
+        }
+      }, 300);
+    });
+
+    // Clique nas dicas → preenche campos
+    document.querySelectorAll(".login-hint-row").forEach(row => {
+      row.addEventListener("click", () => {
+        document.getElementById("inputUser").value = row.dataset.u;
+        document.getElementById("inputPass").value = row.dataset.p;
+        document.getElementById("inputUser").focus();
+      });
+    });
+  </script>
+
+</body>
+</html>

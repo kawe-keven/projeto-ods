@@ -1,0 +1,61 @@
+﻿/* ============================================================
+   variables.css -- Design tokens -- Light Neumorphic Theme
+   ============================================================ */
+
+:root {
+  /*  Surface — base azul-cinza claro */
+  --sur:  #eef2f9;   /* superfície principal                */
+  --sur1: #e4eaf5;   /* fundo de página (ligeiramente mais escuro) */
+  --sur2: #f5f8fd;   /* elevado / destaque (mais claro)     */
+
+  /*  Sombras neumórficas claras
+      Destaque branco no canto superior-esquerdo
+      Sombra azul-acinzentada no inferior-direito        */
+  --nm-out: -5px -5px 12px rgba(255,255,255,0.90),
+             5px  5px 14px rgba(155,180,215,0.65);
+  --nm-in:  inset -3px -3px 8px rgba(255,255,255,0.82),
+            inset  3px  3px 9px rgba(155,180,215,0.55);
+  --nm-flat: -2px -2px 6px rgba(255,255,255,0.82),
+              2px  2px 7px rgba(155,180,215,0.52);
+
+  /*  Cores de sombra como variáveis (para uso inline) */
+  --sh-light: rgba(255,255,255,0.90);
+  --sh-dark:  rgba(155,180,215,0.65);
+
+  /*  Compatibilidade */
+  --bg0: var(--sur1);
+  --bg1: var(--sur1);
+  --bg2: var(--sur);
+  --bg3: var(--sur2);
+  --bd:  rgba(155, 180, 215, 0.50);
+  --bd2: rgba(2, 132, 199, 0.35);
+
+  /*  Text */
+  --t1: #1a3050;   /* texto principal — azul-marinho profundo */
+  --t2: #4a6888;   /* texto secundário                        */
+  --t3: #8aaac8;   /* texto terciário / muted                 */
+
+  /*  Accent — saturados para legibilidade sobre fundo claro */
+  --blue:   #2563eb;
+  --cyan:   #0284c7;
+  --green:  #16a34a;
+  --orange: #ea580c;
+  --red:    #dc2626;
+  --yellow: #b45309;
+
+  /*  Glow helpers (suaves no tema claro) */
+  --glow-cyan:   0 0 14px rgba(2,  132, 199, 0.28);
+  --glow-green:  0 0 12px rgba(22, 163,  74, 0.28);
+  --glow-red:    0 0 12px rgba(220,  38,  38, 0.28);
+  --glow-orange: 0 0 12px rgba(234,  88,  12, 0.28);
+
+  /*  Typography — legibilidade máxima */
+  --fd: 'Outfit', sans-serif;       /* títulos, rótulos, badges  */
+  --fm: 'JetBrains Mono', monospace;/* IDs, coords, dados brutos */
+  --fb: 'Inter', sans-serif;        /* corpo, descrições, tabelas */
+
+  /*  Spacing */
+  --gap:    8px;
+  --radius: 14px;
+  --radius-sm: 9px;
+}

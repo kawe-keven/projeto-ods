@@ -1,0 +1,371 @@
+/* ============================================================
+   users.css — Painel de Gerenciamento de Usuários (Admin)
+   ============================================================ */
+
+/* ── Wrapper geral ── */
+.users-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1000px;
+}
+
+/* ── Cabeçalho da seção ── */
+.users-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.users-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t2);
+  text-transform: uppercase;
+}
+
+/* ── Botão Novo Usuário ── */
+.users-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--sur);
+  box-shadow: var(--nm-out);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  cursor: pointer;
+  transition: box-shadow 0.18s, color 0.18s;
+}
+.users-add-btn:hover {
+  box-shadow: var(--nm-out), 0 0 18px rgba(37,99,235,0.18);
+  color: #1d4ed8;
+}
+.users-add-btn:active {
+  box-shadow: var(--nm-in);
+}
+
+/* ── Tabela / lista de usuários ── */
+.users-table-wrap {
+  background: var(--sur);
+  border-radius: 16px;
+  box-shadow: var(--nm-out);
+  overflow: hidden;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead th {
+  background: var(--sur1);
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t3);
+  text-transform: uppercase;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.users-table tbody tr {
+  border-top: 1px solid rgba(155,180,215,0.25);
+  transition: background 0.15s;
+}
+.users-table tbody tr:hover { background: rgba(37,99,235,0.04); }
+
+.users-table td {
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--t1);
+  vertical-align: middle;
+}
+
+/* Avatar compacto na tabela */
+.users-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sur1);
+  box-shadow: var(--nm-flat);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t2);
+}
+
+/* Badges de perfil */
+.role-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.role-badge.badge-admin    { background: rgba(168,85,247,0.13); color: #9333ea; }
+.role-badge.badge-coord    { background: rgba(2,132,199,0.12);  color: #0284c7; }
+.role-badge.badge-medico   { background: rgba(34,197,94,0.12);  color: #16a34a; }
+.role-badge.badge-operador { background: rgba(234,88,12,0.12);  color: #ea580c; }
+
+/* Status ativo / inativo */
+.user-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.user-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.user-status.active  { color: var(--green); }
+.user-status.active::before  { background: var(--green); box-shadow: var(--glow-green); }
+.user-status.inactive { color: var(--t3); }
+.user-status.inactive::before { background: var(--t3); }
+
+/* Ações */
+.users-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.users-action-btn {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 9px;
+  background: var(--sur1);
+  box-shadow: var(--nm-flat);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.16s;
+  color: var(--t2);
+}
+.users-action-btn:hover { box-shadow: var(--nm-out); }
+.users-action-btn:active { box-shadow: var(--nm-in); }
+.users-action-btn.edit  { color: var(--blue); }
+.users-action-btn.toggle { color: var(--yellow); }
+.users-action-btn.del   { color: var(--red); }
+
+/* ── Modal overlay ── */
+.users-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,48,80,0.30);
+  backdrop-filter: blur(3px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.users-modal-overlay.hidden { display: none; }
+
+/* ── Card do modal ── */
+.users-modal {
+  background: var(--sur);
+  border-radius: 20px;
+  box-shadow:
+    -8px -8px 20px rgba(255,255,255,0.92),
+     8px  8px 22px rgba(155,180,215,0.70);
+  padding: 32px;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.users-modal-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--t1);
+}
+
+.users-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Campos do formulário modal */
+.um-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.um-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--t2);
+  letter-spacing: 0.3px;
+  padding-left: 3px;
+  text-transform: uppercase;
+}
+
+.um-input,
+.um-select {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 11px;
+  background: var(--sur1);
+  box-shadow:
+    inset -3px -3px 7px rgba(255,255,255,0.85),
+    inset  3px  3px 8px rgba(155,180,215,0.50);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--t1);
+  outline: none;
+  transition: box-shadow 0.2s;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.um-input:focus,
+.um-select:focus {
+  box-shadow:
+    inset -3px -3px 7px rgba(255,255,255,0.85),
+    inset  3px  3px 8px rgba(155,180,215,0.50),
+    0 0 0 2px rgba(37,99,235,0.28);
+}
+
+.um-input::placeholder { color: var(--t3); }
+
+/* Linha de hierarquia de perfis */
+.users-roles-legend {
+  background: var(--sur1);
+  border-radius: 14px;
+  box-shadow:
+    inset -2px -2px 6px rgba(255,255,255,0.80),
+    inset  2px  2px 7px rgba(155,180,215,0.45);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.users-roles-legend-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t3);
+  text-transform: uppercase;
+}
+
+.roles-legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.roles-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.roles-legend-level {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--t3);
+  min-width: 26px;
+}
+
+.roles-legend-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--t2);
+}
+
+/* Botões do modal */
+.users-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.um-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 12px;
+  background: var(--sur);
+  box-shadow: var(--nm-out);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.18s;
+}
+.um-btn:hover { box-shadow: var(--nm-out), 0 0 14px rgba(37,99,235,0.15); }
+.um-btn:active { box-shadow: var(--nm-in); }
+.um-btn.primary { color: var(--blue); }
+.um-btn.cancel  { color: var(--t2); }
+
+/* Mensagem de erro do modal */
+.um-error {
+  display: none;
+  background: rgba(220,38,38,0.08);
+  border: 1px solid rgba(220,38,38,0.25);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--red);
+  font-weight: 500;
+}
+.um-error.visible { display: block; }
+
+/* ── Aviso de acesso restrito ── */
+.users-restricted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 60px 24px;
+  color: var(--t3);
+  text-align: center;
+}
+.users-restricted-icon { font-size: 44px; }
+.users-restricted-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t2);
+}
+
+/* Responsividade */
+@media (max-width: 700px) {
+  .users-table thead th:nth-child(4),
+  .users-table td:nth-child(4) { display: none; }
+}
+
+@media (max-width: 500px) {
+  .users-modal { padding: 22px 16px; }
+  .users-add-btn span { display: none; }
+}
